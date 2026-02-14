@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "LtCFtxCSz3Hlf56k1n6nU3pVG/8BUEbYlXFHzCVIXas=",
+  "Source": "ObserveX.Api",
+  "BasePath": "_content/ObserveX.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

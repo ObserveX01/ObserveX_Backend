@@ -1,0 +1,6 @@
+@ObserveX.Api_HostAddress = http://localhost:5142
+
+GET {{ObserveX.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
