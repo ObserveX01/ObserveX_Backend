@@ -2352,31 +2352,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mahir\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\ObserveX.Api.csproj",
+      "projectUniqueName": "D:\\observeX\\ObserveX_Backend\\ObserveX.Api\\ObserveX.Api.csproj",
       "projectName": "ObserveX.Api",
-      "projectPath": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\ObserveX.Api.csproj",
-      "packagesPath": "C:\\Users\\Mahir\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\obj\\",
+      "projectPath": "D:\\observeX\\ObserveX_Backend\\ObserveX.Api\\ObserveX.Api.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "D:\\observeX\\ObserveX_Backend\\ObserveX.Api\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Mahir\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "D:\\observeX\\ObserveX_Backend\\ObserveX.Api\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
