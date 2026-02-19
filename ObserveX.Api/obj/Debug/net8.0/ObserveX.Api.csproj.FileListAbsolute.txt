@@ -100,3 +100,4 @@ D:\GitHub\ObserveX\Backend\ObserveX.Api\obj\Debug\net8.0\refint\ObserveX.Api.dll
 D:\GitHub\ObserveX\Backend\ObserveX.Api\obj\Debug\net8.0\ObserveX.Api.pdb
 D:\GitHub\ObserveX\Backend\ObserveX.Api\obj\Debug\net8.0\ObserveX.Api.genruntimeconfig.cache
 D:\GitHub\ObserveX\Backend\ObserveX.Api\obj\Debug\net8.0\ref\ObserveX.Api.dll
+D:\GitHub\ObserveX\Backend\ObserveX.Api\bin\Debug\net8.0\ObserveX.Api.staticwebassets.runtime.json
