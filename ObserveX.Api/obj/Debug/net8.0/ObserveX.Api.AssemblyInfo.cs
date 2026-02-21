@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ObserveX.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a7db352817c551099431ea8838d02d3d61e37de")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+12657af84917c92e062e900a45b904d91a9b3e0f")]
 [assembly: System.Reflection.AssemblyProductAttribute("ObserveX.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ObserveX.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

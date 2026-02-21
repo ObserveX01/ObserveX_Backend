@@ -207,3 +207,4 @@ D:\observeX\ObserveX_Backend\ObserveX.Api\obj\Debug\net8.0\ObserveX.Api.pdb
 D:\observeX\ObserveX_Backend\ObserveX.Api\obj\Debug\net8.0\ObserveX.Api.genruntimeconfig.cache
 D:\observeX\ObserveX_Backend\ObserveX.Api\obj\Debug\net8.0\ref\ObserveX.Api.dll
 >>>>>>> origin/wasif_54
+D:\GitHub\ObserveX\Backend\ObserveX.Api\bin\Debug\net8.0\NuGet.Config
