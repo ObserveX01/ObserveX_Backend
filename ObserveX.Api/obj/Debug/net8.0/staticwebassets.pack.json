@@ -1,0 +1,93 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\02394522-76c5-415d-87c8-5515abf57318.jpg",
+      "PackagePath": "staticwebassets\\uploads\\02394522-76c5-415d-87c8-5515abf57318.jpg"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\02bb1f50-c35c-4f6d-a876-335fcc2ae0bb.jpg",
+      "PackagePath": "staticwebassets\\uploads\\02bb1f50-c35c-4f6d-a876-335fcc2ae0bb.jpg"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\06760773-ef49-4063-a8af-6b702066e010.jpg",
+      "PackagePath": "staticwebassets\\uploads\\06760773-ef49-4063-a8af-6b702066e010.jpg"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\12de5153-0e9d-46ac-aeeb-d162f3821ea4.jpg",
+      "PackagePath": "staticwebassets\\uploads\\12de5153-0e9d-46ac-aeeb-d162f3821ea4.jpg"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\29a224d2-6920-4674-a787-8e1b223a6818.jpg",
+      "PackagePath": "staticwebassets\\uploads\\29a224d2-6920-4674-a787-8e1b223a6818.jpg"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\2f164462-ac36-4d13-8789-3cd424f50f65.jpg",
+      "PackagePath": "staticwebassets\\uploads\\2f164462-ac36-4d13-8789-3cd424f50f65.jpg"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\33fd36d7-8422-44eb-a294-f42f51ca5a18.jpg",
+      "PackagePath": "staticwebassets\\uploads\\33fd36d7-8422-44eb-a294-f42f51ca5a18.jpg"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\4cccec39-e033-4ac3-9947-5e3444e04424.jfif",
+      "PackagePath": "staticwebassets\\uploads\\4cccec39-e033-4ac3-9947-5e3444e04424.jfif"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\5ff081bf-0577-472b-a9ce-42bf269121b1.png",
+      "PackagePath": "staticwebassets\\uploads\\5ff081bf-0577-472b-a9ce-42bf269121b1.png"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\66da07f2-dec0-4563-af41-9485b3ede51b.JPG",
+      "PackagePath": "staticwebassets\\uploads\\66da07f2-dec0-4563-af41-9485b3ede51b.JPG"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\7bd57cc6-b305-44e9-af16-2ce3ca8c598a.JPG",
+      "PackagePath": "staticwebassets\\uploads\\7bd57cc6-b305-44e9-af16-2ce3ca8c598a.JPG"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\8d81c25a-0965-4b5d-a49b-58eecb7f4100.jpg",
+      "PackagePath": "staticwebassets\\uploads\\8d81c25a-0965-4b5d-a49b-58eecb7f4100.jpg"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\a2ec1406-48c9-4d5d-bfe6-c2fcd3b5a771.jpg",
+      "PackagePath": "staticwebassets\\uploads\\a2ec1406-48c9-4d5d-bfe6-c2fcd3b5a771.jpg"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\ab36a932-0867-4a55-b507-0598237b5511.jpg",
+      "PackagePath": "staticwebassets\\uploads\\ab36a932-0867-4a55-b507-0598237b5511.jpg"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\b064a920-6ac4-4b0d-bfda-315a79a309e4.jpg",
+      "PackagePath": "staticwebassets\\uploads\\b064a920-6ac4-4b0d-bfda-315a79a309e4.jpg"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\c363fd86-bd65-418d-ba70-9bd5ff55d944.JPG",
+      "PackagePath": "staticwebassets\\uploads\\c363fd86-bd65-418d-ba70-9bd5ff55d944.JPG"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\d5de5404-0fee-49b7-b871-1a75f6faac7e.jpg",
+      "PackagePath": "staticwebassets\\uploads\\d5de5404-0fee-49b7-b871-1a75f6faac7e.jpg"
+    },
+    {
+      "Id": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\fd54ad29-b639-4c36-a257-2ebe20406568.jpg",
+      "PackagePath": "staticwebassets\\uploads\\fd54ad29-b639-4c36-a257-2ebe20406568.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ObserveX.Api.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ObserveX.Api.props",
+      "PackagePath": "build\\ObserveX.Api.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ObserveX.Api.props",
+      "PackagePath": "buildMultiTargeting\\ObserveX.Api.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ObserveX.Api.props",
+      "PackagePath": "buildTransitive\\ObserveX.Api.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
