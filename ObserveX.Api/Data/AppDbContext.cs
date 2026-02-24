@@ -9,6 +9,8 @@ public class AppDbContext : DbContext
 
     public DbSet<User> Users { get; set; } 
     
-    // THIS IS THE MISSING LINE:
     public DbSet<UserProfile> UserProfiles { get; set; } 
+
+    public DbSet<Question> Questions { get; set; }
+    public DbSet<QuestionOption> QuestionOptions { get; set; }
 }
