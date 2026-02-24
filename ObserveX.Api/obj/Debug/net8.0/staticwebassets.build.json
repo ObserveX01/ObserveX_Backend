@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ziwh1oLgh7QcwGc70eS30hU7S7BmnsumZhBBC4D1SJU=",
+  "Hash": "xdmghHQYappkmZDYpAsdCbogWLK/kudD+40tdI9MwDU=",
   "Source": "ObserveX.Api",
   "BasePath": "_content/ObserveX.Api",
   "Mode": "Default",
@@ -167,6 +167,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\4cccec39-e033-4ac3-9947-5e3444e04424.jfif"
+    },
+    {
+      "Identity": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\5ff081bf-0577-472b-a9ce-42bf269121b1.png",
+      "SourceId": "ObserveX.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\",
+      "BasePath": "_content/ObserveX.Api",
+      "RelativePath": "uploads/5ff081bf-0577-472b-a9ce-42bf269121b1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\5ff081bf-0577-472b-a9ce-42bf269121b1.png"
     },
     {
       "Identity": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\66da07f2-dec0-4563-af41-9485b3ede51b.JPG",
