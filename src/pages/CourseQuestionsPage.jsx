@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const CourseQuestionsPage = () => {
   const [courses, setCourses] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const teacherEmail = localStorage.getItem("userEmail");
+  const teacherEmail = sessionStorage.getItem("userEmail");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,7 +20,25 @@ const CourseQuestionsPage = () => {
           return acc;
         }, {});
         setCourses(Object.entries(grouped));
-      });
+      })
+      .catch((err) => console.error("Error fetching courses:", err));
+
+    // --- ২. ব্যাক বাটন অফ করার লজিক (নতুন সংযোজন) ---
+    // হিস্ট্রি স্ট্যাকে একটি ফেক স্টেট পুশ করা
+    window.history.pushState(null, null, window.location.href);
+
+    const handleBackButton = () => {
+      // ইউজার ব্যাক বাটন চাপলে জোর করে আবার এই বর্তমান পেজেই ফিরিয়ে আনা
+      window.history.pushState(null, null, window.location.href);
+    };
+
+    // ব্রাউজারের popstate ইভেন্ট লিসেন করা
+    window.addEventListener("popstate", handleBackButton);
+
+    // কম্পোনেন্ট আনমাউন্ট হলে লিসেনার রিমুভ করা
+    return () => {
+      window.removeEventListener("popstate", handleBackButton);
+    };
   }, [teacherEmail]);
 
   const filteredCourses = courses.filter(([name]) => name.toLowerCase().includes(searchTerm.toLowerCase()));

@@ -9,7 +9,7 @@ const MyQuestionsPage = () => {
   const [editData, setEditData] = useState(null);
 
   const navigate = useNavigate();
-  const teacherEmail = localStorage.getItem("userEmail");
+  const teacherEmail = sessionStorage.getItem("userEmail");
 
   const fetchQuestions = () => {
     fetch(`http://localhost:5142/api/questions/${teacherEmail}`)
@@ -55,7 +55,6 @@ const MyQuestionsPage = () => {
         });
 
         if (res.ok) {
-          // লিস্ট থেকে ডিলিট হওয়া প্রশ্নটি বাদ দেওয়া
           setQuestions(questions.filter((q) => q.id !== id));
           alert("Question deleted!");
         } else {

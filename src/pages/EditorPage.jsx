@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const EditorPage = () => {
   const navigate = useNavigate();
-  const teacherEmail = localStorage.getItem("userEmail");
+  const teacherEmail = sessionStorage.getItem("userEmail");
 
   const [courseName, setCourseName] = useState("");
   const [questionsList, setQuestionsList] = useState([]);
@@ -26,8 +26,21 @@ const EditorPage = () => {
       alert("Please select a correct answer for the current question.");
       return "ERROR";
     }
+
     if (options.some((o) => !o.text.trim())) {
       alert("Please fill in all answer options for the current question.");
+      return "ERROR";
+    }
+
+    // --- NEW LOGIC: Check for duplicate options ---
+    // সব অপশন থেকে টেক্সট গুলো নিয়ে trim এবং lowercase করা হচ্ছে যাতে 'Apple' আর 'apple' এক হিসেবে ধরা হয়
+    const optionTexts = options.map((o) => o.text.trim().toLowerCase());
+
+    // Set ব্যবহার করে চেক করা হচ্ছে ইউনিক ভ্যালু কয়টি আছে
+    const uniqueOptions = new Set(optionTexts);
+
+    if (uniqueOptions.size !== optionTexts.length) {
+      alert("All answer options must be unique. You cannot have the same text in multiple choices.");
       return "ERROR";
     }
 
@@ -62,14 +75,12 @@ const EditorPage = () => {
   const handleFinishCourse = async () => {
     if (!courseName.trim()) return alert("Please enter a Course Name first.");
 
-    // --- NEW LOGIC: Check if there's a question on the screen not yet added ---
     let finalQuestionsToSave = [...questionsList];
     const currentQ = validateAndCreateCurrentQuestion();
 
-    if (currentQ === "ERROR") return; // Stop if the current question is partially filled/wrong
+    if (currentQ === "ERROR") return;
 
     if (currentQ !== null) {
-      // If there was a valid question on screen, add it to our temporary save list
       finalQuestionsToSave.push(currentQ);
     }
 

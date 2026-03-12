@@ -7,7 +7,7 @@ const CourseDetailsPage = () => {
   const { courseName } = useParams(); // URL থেকে কোর্সের নাম নিবে
   const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
-  const teacherEmail = localStorage.getItem("userEmail");
+  const teacherEmail = sessionStorage.getItem("userEmail");
 
   useEffect(() => {
     fetch(`http://localhost:5142/api/questions/${teacherEmail}`)

@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 import { User, Pencil, IdCard } from "lucide-react";
 
 const AccountPage = () => {
-  const userEmail = localStorage.getItem("userEmail");
+  const userEmail = sessionStorage.getItem("userEmail");
   const fileInputRef = useRef(null);
 
   const [formData, setFormData] = useState({

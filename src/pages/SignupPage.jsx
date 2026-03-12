@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { ShieldCheck, AlertCircle, ChevronDown } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom"; // 1. Added useNavigate
+import { ShieldCheck, AlertCircle, ChevronDown, Loader2 } from "lucide-react"; // Added Loader2
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const SignupPage = () => {
-  const navigate = useNavigate(); // 2. Initialize navigation
+  const navigate = useNavigate();
 
   // State for form inputs
   const [email, setEmail] = useState("");
@@ -13,88 +13,98 @@ const SignupPage = () => {
   const [role, setRole] = useState("");
   const [agreed, setAgreed] = useState(false);
 
-  // State for error handling
+  // State for handling logic
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false); // For button state
+  const [showSuccessLoader, setShowSuccessLoader] = useState(false); // For final transition
 
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    // 1. Check for empty fields
     if (!email || !phone || !password || !role) {
       setError("Please fill in all fields.");
       return;
     }
 
-    // 2. Phone Number Validation
     const phoneRegex = /^01\d{9}$/;
     if (!phoneRegex.test(phone)) {
       setError("Phone number must start with 01 and be exactly 11 digits long.");
       return;
     }
 
-    // 3. Password Length Validation
     if (password.length < 8) {
       setError("Password must be at least 8 characters long.");
       return;
     }
 
-    // 4. Agreement Validation (THIS IS WHAT YOU ASKED FOR)
     if (!agreed) {
       setError("You must agree to the Terms & Conditions and Privacy Policy.");
-      return; // This stops the code from reaching the fetch call
+      return;
     }
 
-    // If all checks pass, clear error and call API
     setError("");
+    setIsSubmitting(true);
 
     const signupData = {
-      email: email,
+      email,
       phoneNumber: phone,
-      password: password,
-      role: role,
+      password,
+      role,
     };
 
     try {
       const response = await fetch("http://localhost:5142/api/auth/signup", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(signupData),
       });
 
       const result = await response.json();
 
       if (response.ok) {
-        alert(`Signup successful! Redirecting to login...`);
-        navigate("/login");
+        setIsSubmitting(false);
+        setShowSuccessLoader(true); // Trigger the loading animation
+
+        // Wait for 3 seconds so the user sees the professional transition
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000);
       } else {
+        setIsSubmitting(false);
         setError(result.message || "Signup failed. Please try again.");
       }
     } catch (err) {
-      console.error("Signup error:", err);
+      setIsSubmitting(false);
       setError("Cannot connect to server. Is the backend running?");
     }
   };
 
   return (
-    <div className='min-h-screen bg-slate-50 flex flex-col items-center pt-8 px-4 font-sans'>
+    <div className='relative min-h-screen bg-slate-50 flex flex-col items-center pt-8 px-4 font-sans'>
+      {/* 1. Standard Loading Overlay (Appears on success) */}
+      {showSuccessLoader && (
+        <div className='fixed inset-0 z-50 flex flex-col items-center justify-center bg-white/90 backdrop-blur-sm transition-all duration-500'>
+          <div className='relative'>
+            <img src={logo} alt='ObserveX Logo' className='w-20 h-20 animate-pulse' />
+            <div className='absolute -inset-2 border-4 border-[#00c288] border-t-transparent rounded-full animate-spin'></div>
+          </div>
+          <h2 className='mt-6 text-xl font-bold text-slate-800 tracking-tight'>Creating your account...</h2>
+        </div>
+      )}
+
       {/* Top Logo */}
       <Link to='/' className='flex items-center gap-2 mb-8 hover:opacity-80 transition-opacity'>
-        {/* <div className='bg-[#00c288] p-1 rounded-md'>
-          <ShieldCheck className='text-white w-6 h-6' />
-        </div> */}
         <img src={logo} alt='ObserveX Logo' className='w-10 h-10' />
         <span className='text-2xl font-bold tracking-tight text-slate-800 uppercase'>observeX</span>
       </Link>
 
       {/* Main Signup Card */}
-      <div className='w-full max-w-[480px] bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden'>
+      <div
+        className={`w-full max-w-[480px] bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden transition-opacity duration-300 ${showSuccessLoader ? "opacity-0" : "opacity-100"}`}>
         <div className='p-10'>
           <h1 className='text-2xl font-bold text-slate-800 mb-2'>Sign up</h1>
           <p className='text-slate-500 mb-8'>Just one more step to create your first test!</p>
 
-          {/* Error Message Box */}
           {error && (
             <div className='mb-6 flex items-center gap-2 p-3 rounded bg-red-50 border border-red-200 text-red-600 text-sm animate-in fade-in zoom-in'>
               <AlertCircle size={16} className='shrink-0' />
@@ -103,7 +113,6 @@ const SignupPage = () => {
           )}
 
           <form onSubmit={handleSignup} className='space-y-5'>
-            {/* Email Field */}
             <div>
               <label className='block text-sm font-semibold text-slate-700 mb-2'>Email address</label>
               <input
@@ -111,13 +120,11 @@ const SignupPage = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder='name@gmail.com'
-                className={`w-full px-4 py-3 rounded-md border ${
-                  error && !email ? "border-red-500" : "border-slate-200"
-                } focus:outline-none focus:border-[#00c288] transition-colors`}
+                disabled={isSubmitting}
+                className='w-full px-4 py-3 rounded-md border border-slate-200 focus:outline-none focus:border-[#00c288] transition-colors'
               />
             </div>
 
-            {/* Phone Number Field */}
             <div>
               <label className='block text-sm font-semibold text-slate-700 mb-2'>Phone number</label>
               <input
@@ -126,36 +133,31 @@ const SignupPage = () => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
                 placeholder='01XXXXXXXXX'
-                className={`w-full px-4 py-3 rounded-md border ${
-                  error && (phone.length !== 11 || !phone.startsWith("01")) ? "border-red-500" : "border-slate-200"
-                } focus:outline-none focus:border-[#00c288] transition-colors`}
+                disabled={isSubmitting}
+                className='w-full px-4 py-3 rounded-md border border-slate-200 focus:outline-none focus:border-[#00c288] transition-colors'
               />
             </div>
 
-            {/* Password Field */}
             <div>
-              <label className='block text-sm font-semibold text-slate-700 mb-2'>Password (min. 8 characters)</label>
+              <label className='block text-sm font-semibold text-slate-700 mb-2'>Password</label>
               <input
                 type='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder='••••••••'
-                className={`w-full px-4 py-3 rounded-md border ${
-                  error && password.length < 8 ? "border-red-500" : "border-slate-200"
-                } focus:outline-none focus:border-[#00c288] transition-colors`}
+                disabled={isSubmitting}
+                className='w-full px-4 py-3 rounded-md border border-slate-200 focus:outline-none focus:border-[#00c288] transition-colors'
               />
             </div>
 
-            {/* Role Selection Field */}
             <div className='relative'>
               <label className='block text-sm font-semibold text-slate-700 mb-2'>I am a...</label>
               <div className='relative'>
                 <select
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
-                  className={`w-full appearance-none px-4 py-3 rounded-md border ${
-                    error && !role ? "border-red-500" : "border-slate-200"
-                  } focus:outline-none focus:border-[#00c288] bg-white transition-colors cursor-pointer text-slate-700`}>
+                  disabled={isSubmitting}
+                  className='w-full appearance-none px-4 py-3 rounded-md border border-slate-200 focus:outline-none focus:border-[#00c288] bg-white transition-colors cursor-pointer text-slate-700'>
                   <option value='' disabled>
                     Select your role
                   </option>
@@ -169,7 +171,6 @@ const SignupPage = () => {
               </div>
             </div>
 
-            {/* Checkbox Section */}
             <div className='flex items-start gap-3 pt-2'>
               <input
                 type='checkbox'
@@ -193,20 +194,19 @@ const SignupPage = () => {
               </label>
             </div>
 
-            {/* Submit Button */}
             <button
               type='submit'
-              className='w-full bg-[#00c288] hover:bg-[#00b377] text-white font-bold py-3.5 rounded-md transition-all active:scale-[0.98] shadow-sm mt-2'>
-              Sign up
+              disabled={isSubmitting}
+              className='w-full bg-[#00c288] hover:bg-[#00b377] text-white font-bold py-3.5 rounded-md transition-all active:scale-[0.98] shadow-sm mt-2 flex items-center justify-center gap-2'>
+              {isSubmitting ? <Loader2 className='animate-spin' size={20} /> : "Sign up"}
             </button>
           </form>
         </div>
 
-        {/* Footer Support Section */}
         <div className='bg-[#f8fafc] border-t border-slate-100 p-8'>
           <h3 className='text-lg font-bold text-[#004242] mb-3'>Here to take a test?</h3>
           <p className='text-sm text-slate-600 leading-relaxed'>
-            No need to sign up. If you are a test-taker and got lost, please visit our{" "}
+            No need to sign up. Visit our{" "}
             <Link to='/help' className='text-[#00c288] hover:underline font-bold'>
               Help Center
             </Link>

@@ -1,163 +1,7 @@
-// import React, { useState } from "react";
-// import { ShieldCheck, AlertCircle, ChevronDown } from "lucide-react";
-// import { Link, useNavigate } from "react-router-dom";
-// import logo from "../assets/logo.png";
-
-// const LoginPage = () => {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [role, setRole] = useState("");
-//   const [error, setError] = useState("");
-
-//   const navigate = useNavigate();
-
-//   const handleLogin = async (e) => {
-//     e.preventDefault();
-
-//     // 1. Frontend Validation
-//     if (!email || !password || !role) {
-//       setError("Please enter your email, password and select your role.");
-//       return;
-//     }
-
-//     try {
-//       // 2. Call your ASP.NET Backend API
-//       const response = await fetch("http://localhost:5142/api/auth/login", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//           email: email,
-//           password: password,
-//           role: role,
-//         }),
-//       });
-
-//       const result = await response.json();
-
-//       if (response.ok) {
-//         // 3. Success Case
-//         setError("");
-//         console.log("Login successful:", result);
-
-//         // Optional: Save user role/email to localStorage so Dashboard can use it
-//         localStorage.setItem("userRole", result.role);
-//         localStorage.setItem("userEmail", result.email);
-
-//         // Redirect to dashboard
-//         navigate("/dashboard");
-//       } else {
-//         // 4. Backend Validation Error (e.g. Invalid password or wrong role)
-//         setError(result.message || "Invalid login credentials.");
-//       }
-//     } catch (err) {
-//       // 5. Network Error
-//       console.error("Login error:", err);
-//       setError("Cannot connect to server. Is the backend running?");
-//     }
-//   };
-
-//   return (
-//     <div className='min-h-screen bg-slate-50 flex flex-col items-center pt-12 px-4 font-sans'>
-//       {/* Top Logo */}
-//       <Link to='/' className='flex items-center gap-2 mb-10 hover:opacity-80 transition-opacity'>
-//         {/* <div className='bg-[#00c288] p-1 rounded-md'>
-//           <ShieldCheck className='text-white w-6 h-6' />
-//         </div> */}
-//         <img src={logo} alt='ObserveX Logo' className='w-10 h-10' />
-//         <span className='text-2xl font-bold tracking-tight text-slate-800 uppercase'>observeX</span>
-//       </Link>
-
-//       {/* Login Card */}
-//       <div className='w-full max-w-[450px] bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden'>
-//         <div className='p-10'>
-//           <h1 className='text-2xl font-bold text-slate-800 mb-2'>Sign in</h1>
-//           <p className='text-slate-500 mb-8'>Welcome back! Please enter your details.</p>
-
-//           {error && (
-//             <div className='mb-6 flex items-center gap-2 p-3 rounded bg-red-50 border border-red-200 text-red-600 text-sm animate-in fade-in zoom-in'>
-//               <AlertCircle size={16} className='shrink-0' />
-//               <span>{error}</span>
-//             </div>
-//           )}
-
-//           <form onSubmit={handleLogin} className='space-y-6'>
-//             {/* Email Field */}
-//             <div>
-//               <label className='block text-sm font-semibold text-slate-700 mb-2'>Enter your email</label>
-//               <input
-//                 type='email'
-//                 value={email}
-//                 onChange={(e) => setEmail(e.target.value)}
-//                 placeholder='name@gmail.com'
-//                 className='w-full px-4 py-3 rounded-md border border-slate-200 focus:outline-none focus:border-[#00c288] transition-colors'
-//               />
-//             </div>
-
-//             {/* Password Field */}
-//             <div>
-//               <label className='block text-sm font-semibold text-slate-700 mb-2'>Enter password</label>
-//               <input
-//                 type='password'
-//                 value={password}
-//                 onChange={(e) => setPassword(e.target.value)}
-//                 placeholder='••••••••'
-//                 className='w-full px-4 py-3 rounded-md border border-slate-200 focus:outline-none focus:border-[#00c288] transition-colors'
-//               />
-//             </div>
-
-//             {/* Role Field */}
-//             <div className='relative'>
-//               <label className='block text-sm font-semibold text-slate-700 mb-2'>Sign in as</label>
-//               <div className='relative'>
-//                 <select
-//                   value={role}
-//                   onChange={(e) => setRole(e.target.value)}
-//                   className='w-full appearance-none px-4 py-3 rounded-md border border-slate-200 focus:outline-none focus:border-[#00c288] bg-white transition-colors cursor-pointer text-slate-700'>
-//                   <option value='' disabled>
-//                     Select your role
-//                   </option>
-//                   <option value='Student'>Student</option>
-//                   <option value='Teacher'>Teacher</option>
-//                   <option value='Admin'>Admin</option>
-//                 </select>
-//                 <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400'>
-//                   <ChevronDown size={18} />
-//                 </div>
-//               </div>
-//             </div>
-
-//             {/* Sign in Button */}
-//             <button
-//               type='submit'
-//               className='w-full bg-[#00c288] hover:bg-[#00b377] text-white font-bold py-3.5 rounded-md transition-all active:scale-[0.98] shadow-sm'>
-//               Sign in
-//             </button>
-//           </form>
-
-//           <div className='mt-8 pt-6 border-t border-slate-100 flex flex-col items-center gap-4'>
-//             <Link
-//               to='/signup'
-//               className='w-full text-center border border-slate-200 py-3 rounded-md hover:bg-slate-50 transition-colors font-bold text-slate-700'>
-//               Create an account
-//             </Link>
-//             <button className='text-slate-400 text-sm hover:underline'>Forgot your password?</button>
-//           </div>
-//         </div>
-//       </div>
-
-//       <div className='mt-8 text-slate-400 text-xs pb-8'>© 2026 ObserveX. All rights reserved.</div>
-//     </div>
-//   );
-// };
-
-// export default LoginPage;
-
 import React, { useState, useEffect } from "react";
-import { AlertCircle, ChevronDown, Eye, EyeOff } from "lucide-react";
+import { AlertCircle, ChevronDown, Eye, EyeOff, Loader2 } from "lucide-react"; // Added Loader2
 import { Link, useNavigate } from "react-router-dom";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import logo from "../assets/logo.png";
 
 const LoginPage = () => {
@@ -168,12 +12,15 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isHoveringForm, setIsHoveringForm] = useState(false);
 
+  // --- LOGIC STATES ---
+  const [isLoggingIn, setIsLoggingIn] = useState(false); // For button spinner
+  const [showSuccessLoader, setShowSuccessLoader] = useState(false); // For transition overlay
+
   const navigate = useNavigate();
 
-  // --- Eye Tracking & Leaning Logic ---
+  // --- Eye Tracking & Leaning Logic (KEEPING YOUR EXACT LOGIC) ---
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-
   const eyeX = useSpring(mouseX, { stiffness: 200, damping: 20 });
   const eyeY = useSpring(mouseY, { stiffness: 200, damping: 20 });
 
@@ -198,12 +45,28 @@ const LoginPage = () => {
 
   const leanRotation = !showPassword ? -12 : isHoveringForm ? 8 : 0;
 
+  // --- UPDATED LOGIN LOGIC ---
   const handleLogin = async (e) => {
     e.preventDefault();
     if (!email || !password || !role) {
       setError("Please enter your details and select your role.");
       return;
     }
+    sessionStorage.clear();
+
+    const adminEmail = import.meta.env.VITE_ADMIN_EMAIL;
+    const adminPass = import.meta.env.VITE_ADMIN_PASSWORD;
+
+    if (email === adminEmail && password === adminPass) {
+      sessionStorage.setItem("token", "admin-token-123");
+      sessionStorage.setItem("userRole", "Admin");
+      sessionStorage.setItem("userEmail", email);
+      navigate("/dashboard", { replace: true });
+      return;
+    }
+
+    setIsLoggingIn(true); // Start button loading
+
     try {
       const response = await fetch("http://localhost:5142/api/auth/login", {
         method: "POST",
@@ -211,15 +74,32 @@ const LoginPage = () => {
         body: JSON.stringify({ email, password, role }),
       });
       const result = await response.json();
+
       if (response.ok) {
         setError("");
-        localStorage.setItem("userRole", result.role);
-        localStorage.setItem("userEmail", result.email);
-        navigate("/dashboard");
+        sessionStorage.setItem("token", result.token);
+        sessionStorage.setItem("userRole", result.role);
+        sessionStorage.setItem("userEmail", result.email);
+
+        setIsLoggingIn(false);
+        setShowSuccessLoader(true); // Show professional loader
+
+        // Professional transition delay
+        setTimeout(() => {
+          if (result.role === "Admin") {
+            navigate("/results-database", { replace: true });
+          } else if (result.role === "Teacher") {
+            navigate("/course-questions", { replace: true });
+          } else {
+            navigate("/dashboard", { replace: true });
+          }
+        }, 2500);
       } else {
+        setIsLoggingIn(false);
         setError(result.message || "Invalid login credentials.");
       }
     } catch (err) {
+      setIsLoggingIn(false);
       setError("Cannot connect to server.");
     }
   };
@@ -230,8 +110,38 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='flex min-h-screen bg-slate-50 font-sans overflow-hidden' onMouseMove={handleMouseMove}>
-      {/* LEFT SIDE: Animated Illustration */}
+    <div className='relative flex min-h-screen bg-slate-50 font-sans overflow-hidden' onMouseMove={handleMouseMove}>
+      {/* PROFESSIONAL SUCCESS OVERLAY */}
+      <AnimatePresence>
+        {showSuccessLoader && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className='fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white/90 backdrop-blur-md'>
+            <div className='relative'>
+              <motion.img
+                src={logo}
+                alt='ObserveX Logo'
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ repeat: Infinity, duration: 1.5 }}
+                className='w-24 h-24'
+              />
+              <div className='absolute -inset-4 border-4 border-[#00c288] border-t-transparent rounded-full animate-spin'></div>
+            </div>
+            <motion.h2
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className='mt-8 text-2xl font-black text-slate-900 tracking-tighter uppercase'>
+              Signing you in...
+            </motion.h2>
+            <p className='text-slate-500 font-medium mt-1'>Entering your ObserveX dashboard</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* LEFT SIDE: (UNCHANGED AS REQUESTED) */}
       <div className='hidden lg:flex w-1/2 bg-[#e8edf5] items-center justify-center relative'>
         <div className='relative w-[450px] h-[450px] flex items-end justify-center'>
           {/* PURPLE CHARACTER */}
@@ -242,10 +152,7 @@ const LoginPage = () => {
               x: error ? [0, -10, 10, -10, 10, 0] : 0,
             }}
             style={{ transformOrigin: "bottom center" }}
-            transition={{
-              rotate: { type: "spring" },
-              y: { repeat: Infinity, duration: 4, ease: "easeInOut" },
-            }}
+            transition={{ rotate: { type: "spring" }, y: { repeat: Infinity, duration: 4, ease: "easeInOut" } }}
             className='absolute bottom-32 left-12 w-28 h-64 bg-[#747bff] rounded-t-[60px] z-10 flex flex-col items-center pt-12 shadow-sm'>
             <EyePair x={eyeX} y={eyeY} isSquinting={!showPassword} isError={!!error} />
             <motion.div
@@ -274,12 +181,11 @@ const LoginPage = () => {
             />
           </motion.div>
 
-          {/* ORANGE CHARACTER - Fixed Growth on Error */}
+          {/* ORANGE CHARACTER */}
           <motion.div
             animate={{
               rotate: leanRotation * 0.5,
               y: [0, -8, 0],
-              // scale is 1 when error exists to prevent it from getting bigger/pulsing
               scale: error ? 1 : [1, 1.02, 1],
               x: error ? [0, -15, 15, -15, 15, 0] : 0,
             }}
@@ -287,14 +193,12 @@ const LoginPage = () => {
             transition={{
               rotate: { type: "spring" },
               y: { repeat: Infinity, duration: 5, ease: "easeInOut" },
-              // Pulsing scale only repeats when there is no error
               scale: error ? { duration: 0.2 } : { repeat: Infinity, duration: 2 },
             }}
             className='absolute bottom-0 left-0 w-64 h-52 bg-[#f97316] rounded-t-[130px] z-30 flex flex-col items-center pt-24 shadow-sm'>
             <EyePair x={eyeX} y={eyeY} scale={0.8} isSquinting={!showPassword} isError={!!error} />
             <motion.div
               animate={{
-                // Reduced width expansion on error
                 width: error ? 24 : showPassword ? 24 : 16,
                 height: error ? 8 : showPassword ? 10 : 2,
                 borderRadius: error ? "100px 100px 0 0" : showPassword ? "0 0 100px 100px" : "4px",
@@ -306,11 +210,7 @@ const LoginPage = () => {
 
           {/* YELLOW CHARACTER */}
           <motion.div
-            animate={{
-              rotate: leanRotation,
-              y: [0, -12, 0],
-              x: error ? [0, -10, 10, -10, 10, 0] : 0,
-            }}
+            animate={{ rotate: leanRotation, y: [0, -12, 0], x: error ? [0, -10, 10, -10, 10, 0] : 0 }}
             style={{ transformOrigin: "bottom center" }}
             transition={{
               rotate: { type: "spring" },
@@ -326,12 +226,13 @@ const LoginPage = () => {
         </div>
       </div>
 
-      {/* RIGHT SIDE: Login Form */}
-      <div className='w-full lg:w-1/2 flex flex-col items-center justify-center p-6 bg-white'>
-        <div className='flex items-center gap-3 mb-10'>
+      {/* RIGHT SIDE: Form */}
+      <div
+        className={`w-full lg:w-1/2 flex flex-col items-center justify-center p-6 bg-white transition-opacity duration-500 ${showSuccessLoader ? "opacity-0 scale-95" : "opacity-100"}`}>
+        <Link to='/' className='flex items-center gap-3 mb-10 hover:opacity-80 transition-opacity group'>
           <img src={logo} alt='ObserveX Logo' className='w-10 h-10 object-contain' />
           <span className='text-2xl font-bold text-[#1e293b] tracking-tight uppercase'>observeX</span>
-        </div>
+        </Link>
 
         <div
           onMouseEnter={() => setIsHoveringForm(true)}
@@ -340,15 +241,18 @@ const LoginPage = () => {
           <h1 className='text-3xl font-bold text-[#1e293b] mb-2'>Sign in</h1>
           <p className='text-slate-400 mb-8 font-medium'>Welcome back! Please enter your details.</p>
 
-          {error && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className='mb-6 flex items-center gap-2 p-3 rounded-md bg-red-50 text-red-600 text-sm border border-red-100'>
-              <AlertCircle size={16} />
-              <span className='font-semibold'>{error}</span>
-            </motion.div>
-          )}
+          <AnimatePresence>
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className='mb-6 flex items-center gap-2 p-3 rounded-md bg-red-50 text-red-600 text-sm border border-red-100'>
+                <AlertCircle size={16} />
+                <span className='font-semibold'>{error}</span>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           <form onSubmit={handleLogin} className='space-y-6'>
             <div>
@@ -358,6 +262,7 @@ const LoginPage = () => {
                 value={email}
                 onChange={(e) => handleInputChange(setEmail, e.target.value)}
                 placeholder='name@gmail.com'
+                disabled={isLoggingIn}
                 className='w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-[#00c288] outline-none transition-all focus:bg-white bg-slate-50 font-medium'
               />
             </div>
@@ -370,6 +275,7 @@ const LoginPage = () => {
                   value={password}
                   onChange={(e) => handleInputChange(setPassword, e.target.value)}
                   placeholder='••••••••'
+                  disabled={isLoggingIn}
                   className='w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-[#00c288] outline-none transition-all focus:bg-white bg-slate-50 font-medium'
                 />
                 <button
@@ -387,6 +293,7 @@ const LoginPage = () => {
                 <select
                   value={role}
                   onChange={(e) => handleInputChange(setRole, e.target.value)}
+                  disabled={isLoggingIn}
                   className='w-full appearance-none px-4 py-3 rounded-lg border border-slate-200 focus:border-[#00c288] outline-none bg-slate-50 cursor-pointer text-slate-500 font-bold'>
                   <option value='' disabled>
                     Select your role
@@ -401,8 +308,9 @@ const LoginPage = () => {
 
             <button
               type='submit'
-              className='w-full bg-[#00c288] hover:bg-[#00b07c] text-white font-bold py-4 rounded-lg transition-all active:scale-[0.99] shadow-md text-lg'>
-              Sign in
+              disabled={isLoggingIn}
+              className='w-full bg-[#00c288] hover:bg-[#00b07c] text-white font-bold py-4 rounded-lg transition-all active:scale-[0.99] shadow-md text-lg flex items-center justify-center gap-2'>
+              {isLoggingIn ? <Loader2 className='animate-spin' size={20} /> : "Sign in"}
             </button>
           </form>
 
@@ -419,7 +327,6 @@ const LoginPage = () => {
   );
 };
 
-// --- EYE COMPONENT ---
 const EyePair = ({ x, y, scale = 1, isSquinting = false, isError = false }) => (
   <div className='flex gap-4' style={{ transform: `scale(${scale})` }}>
     {[1, 2].map((i) => (

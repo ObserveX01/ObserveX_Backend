@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import {
   Search,
   ShieldCheck,
-  ArrowLeft,
   BookOpen,
   UserCircle,
   Settings,
@@ -12,9 +11,23 @@ import {
   ChevronRight,
   PlayCircle,
 } from "lucide-react";
+import logo from "../assets/logo.png";
 
 const HelpCenter = () => {
   const [searchQuery, setSearchQuery] = useState("");
+
+  // ১. সেশন বা লোকাল স্টোরেজ থেকে অথেন্টিকেশন ডাটা নেওয়া
+  const token = sessionStorage.getItem("token");
+  const userRole = sessionStorage.getItem("userRole");
+
+  // ২. রোল অনুযায়ী লোগোর পাথ ঠিক করা
+  const getLogoPath = () => {
+    if (!token) return "/";
+    if (userRole === "Teacher") return "/course-questions";
+    if (userRole === "Student") return "/dashboard";
+    if (userRole === "Admin") return "/results-database";
+    return "/";
+  };
 
   const categories = [
     {
@@ -54,41 +67,28 @@ const HelpCenter = () => {
       {/* Header */}
       <nav className='border-b border-white/10 py-6'>
         <div className='max-w-6xl mx-auto px-6 flex justify-between items-center'>
-          <Link to='/' className='flex items-center gap-2'>
-            <div className='bg-obs-mint p-1 rounded'>
-              <ShieldCheck className='text-obs-dark w-5 h-5' />
-            </div>
+          {/* লোগো ক্লিক লজিক আপডেট করা হয়েছে */}
+          <Link to={getLogoPath()} className='flex items-center gap-3 hover:opacity-80 transition-all group'>
+            {/* আপনার প্রোজেক্টের আসল লোগো ইমেজ */}
+            <img src={logo} alt='ObserveX Logo' className='w-10 h-10 object-contain' />
             <span className='font-bold tracking-tight text-xl'>
-              observeX <span className='text-white/50 font-normal'>Help Center</span>
+              OBSERVEX <span className='text-white/50 font-normal'>Help Center</span>
             </span>
           </Link>
-          <Link
-            to='/signup'
-            className='text-sm font-medium bg-obs-mint text-obs-dark px-4 py-2 rounded-lg hover:bg-white transition-colors'>
-            Back to Sign up
-          </Link>
+
+          {/* ৩. লগইন করা না থাকলে শুধু তখনই সাইনআপ বাটনটি দেখাবে */}
+          {!token && (
+            <Link
+              to='/signup'
+              className='text-sm font-medium bg-obs-mint text-obs-dark px-4 py-2 rounded-lg hover:bg-white transition-colors'>
+              Back to Sign up
+            </Link>
+          )}
         </div>
       </nav>
 
-      {/* Hero Search Section */}
-      <section className='bg-gradient-to-b from-obs-mint/10 to-transparent py-20 px-6'>
-        <div className='max-w-3xl mx-auto text-center space-y-8'>
-          <h1 className='text-4xl lg:text-5xl font-extrabold'>How can we help you?</h1>
-          <div className='relative'>
-            <Search className='absolute left-4 top-1/2 -translate-y-1/2 text-white/40' size={20} />
-            <input
-              type='text'
-              placeholder="Search for articles (e.g. 'how to proctor', 'pricing')..."
-              className='w-full bg-white/5 border border-white/10 rounded-2xl py-5 pl-12 pr-6 focus:outline-none focus:border-obs-mint focus:ring-1 focus:ring-obs-mint transition-all text-lg'
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Categories Grid */}
-      <section className='max-w-6xl mx-auto px-6 py-20'>
+      <section className='max-w-6xl mx-auto px-6 py-8'>
         <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
           {categories.map((cat, idx) => (
             <div
@@ -124,25 +124,6 @@ const HelpCenter = () => {
               <ChevronRight size={18} className='text-white/20' />
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Support Footer */}
-      <section className='max-w-6xl mx-auto px-6 py-20 mb-20'>
-        <div className='bg-obs-mint rounded-3xl p-10 lg:p-16 flex flex-col lg:flex-row items-center justify-between gap-10'>
-          <div className='text-obs-dark max-w-lg'>
-            <h2 className='text-3xl font-extrabold mb-4'>Still need help?</h2>
-            <p className='text-obs-dark/70 font-medium'>
-              Our support team is available 24/7 to help you with any technical difficulties or billing questions.
-            </p>
-          </div>
-          <div className='flex flex-col sm:flex-row gap-4'>
-            <a
-              href='tel:01644411029'
-              className='flex items-center justify-center gap-2 bg-obs-dark text-white px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform'>
-              <MessageCircle size={20} /> Contact Support
-            </a>
-          </div>
         </div>
       </section>
 
