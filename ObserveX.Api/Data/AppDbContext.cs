@@ -13,6 +13,7 @@ public class AppDbContext : DbContext
     public DbSet<QuestionOption> QuestionOptions { get; set; }
     public DbSet<ExamResult> ExamResults { get; set; }
     public DbSet<StudentAnswer> StudentAnswers { get; set; }
+    public DbSet<ViolationLog> ViolationLogs { get; set; }
 
     // --- এই অংশটুকু যোগ করুন ---
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,5 +27,6 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<QuestionOption>().ToTable("questionoptions");
         modelBuilder.Entity<ExamResult>().ToTable("examresults");
         modelBuilder.Entity<StudentAnswer>().ToTable("studentanswers");
+        modelBuilder.Entity<ViolationLog>().ToTable("violationlogs");
     }
 }
