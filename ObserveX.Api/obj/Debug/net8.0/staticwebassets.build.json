@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xne1u5o+NMnUajS5iJIuJu/rt5P0xw3kL6toeOQnSa8=",
+  "Hash": "EyRW+FVMM5/PlARVYGIIcDlO0eF2cBpX8oU1f9bTnsk=",
   "Source": "ObserveX.Api",
   "BasePath": "_content/ObserveX.Api",
   "Mode": "Default",
@@ -93,6 +93,25 @@
       "OriginalItemSpec": "wwwroot\\uploads\\12de5153-0e9d-46ac-aeeb-d162f3821ea4.jpg"
     },
     {
+      "Identity": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\2519a490-14db-4428-9162-01f9e694db6f.jpg",
+      "SourceId": "ObserveX.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\",
+      "BasePath": "_content/ObserveX.Api",
+      "RelativePath": "uploads/2519a490-14db-4428-9162-01f9e694db6f.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\2519a490-14db-4428-9162-01f9e694db6f.jpg"
+    },
+    {
       "Identity": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\29a224d2-6920-4674-a787-8e1b223a6818.jpg",
       "SourceId": "ObserveX.Api",
       "SourceType": "Discovered",
@@ -129,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\2f164462-ac36-4d13-8789-3cd424f50f65.jpg"
+    },
+    {
+      "Identity": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\33d706a8-e39c-4ab1-a751-bab5a123db1a.jpg",
+      "SourceId": "ObserveX.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\",
+      "BasePath": "_content/ObserveX.Api",
+      "RelativePath": "uploads/33d706a8-e39c-4ab1-a751-bab5a123db1a.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\33d706a8-e39c-4ab1-a751-bab5a123db1a.jpg"
     },
     {
       "Identity": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\33fd36d7-8422-44eb-a294-f42f51ca5a18.jpg",
@@ -359,6 +397,25 @@
       "OriginalItemSpec": "wwwroot\\uploads\\8efbf536-3c63-4248-a771-7b8401e91e8d.jpg"
     },
     {
+      "Identity": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\941d995a-5471-4fd5-a70d-f6e00cb25517.jpg",
+      "SourceId": "ObserveX.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\",
+      "BasePath": "_content/ObserveX.Api",
+      "RelativePath": "uploads/941d995a-5471-4fd5-a70d-f6e00cb25517.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\941d995a-5471-4fd5-a70d-f6e00cb25517.jpg"
+    },
+    {
       "Identity": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\a2ec1406-48c9-4d5d-bfe6-c2fcd3b5a771.jpg",
       "SourceId": "ObserveX.Api",
       "SourceType": "Discovered",
@@ -397,6 +454,25 @@
       "OriginalItemSpec": "wwwroot\\uploads\\ab36a932-0867-4a55-b507-0598237b5511.jpg"
     },
     {
+      "Identity": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\ac9f8405-8dc9-4444-becd-4cfac9e3191c.jpg",
+      "SourceId": "ObserveX.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\",
+      "BasePath": "_content/ObserveX.Api",
+      "RelativePath": "uploads/ac9f8405-8dc9-4444-becd-4cfac9e3191c.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\ac9f8405-8dc9-4444-becd-4cfac9e3191c.jpg"
+    },
+    {
       "Identity": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\b064a920-6ac4-4b0d-bfda-315a79a309e4.jpg",
       "SourceId": "ObserveX.Api",
       "SourceType": "Discovered",
@@ -414,6 +490,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\b064a920-6ac4-4b0d-bfda-315a79a309e4.jpg"
+    },
+    {
+      "Identity": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\b629aa62-8d81-45c6-a5cc-e13d46d819e4.HEIC",
+      "SourceId": "ObserveX.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\",
+      "BasePath": "_content/ObserveX.Api",
+      "RelativePath": "uploads/b629aa62-8d81-45c6-a5cc-e13d46d819e4.HEIC",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\b629aa62-8d81-45c6-a5cc-e13d46d819e4.HEIC"
     },
     {
       "Identity": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\c363fd86-bd65-418d-ba70-9bd5ff55d944.JPG",
@@ -452,6 +547,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\d5de5404-0fee-49b7-b871-1a75f6faac7e.jpg"
+    },
+    {
+      "Identity": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\df32849d-e758-48e8-b468-5fe8ddd8dac6.jpg",
+      "SourceId": "ObserveX.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\",
+      "BasePath": "_content/ObserveX.Api",
+      "RelativePath": "uploads/df32849d-e758-48e8-b468-5fe8ddd8dac6.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\df32849d-e758-48e8-b468-5fe8ddd8dac6.jpg"
     },
     {
       "Identity": "D:\\GitHub\\ObserveX\\Backend\\ObserveX.Api\\wwwroot\\uploads\\fd54ad29-b639-4c36-a257-2ebe20406568.jpg",

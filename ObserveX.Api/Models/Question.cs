@@ -1,5 +1,8 @@
+using System.ComponentModel.DataAnnotations.Schema;
 namespace ObserveX.Api.Models;
 
+
+[Table("questions")]
 public class Question
 {
     public int Id { get; set; }
