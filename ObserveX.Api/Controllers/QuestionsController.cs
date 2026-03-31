@@ -113,7 +113,7 @@ public class QuestionsController : ControllerBase
                         q.CourseName,
                         q.Text,
                         q.TeacherEmail,
-                        TeacherName = p != null ? $"{p.FirstName} {p.LastName}" : "ObserveX Admin",
+                        TeacherName = p != null ? $"{p.FirstName} {p.LastName}" : "ObserveX Teacher",
                         Options = q.Options
                     };
 
@@ -122,32 +122,34 @@ public class QuestionsController : ControllerBase
 
 
 
-    // DELETE: api/questions/5
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteQuestion(int id)
-    {
-        // ১. ডাটাবেস থেকে ওই আইডি-র প্রশ্নটি খুঁজে বের করা (সাথে অপশনগুলোও)
-        var question = await _context.Questions
-            .Include(q => q.Options)
-            .FirstOrDefaultAsync(q => q.Id == id);
+  [HttpDelete("{id}")]
+public async Task<IActionResult> DeleteQuestion(int id)
+{
+    var question = await _context.Questions
+        .Include(q => q.Options)
+        .FirstOrDefaultAsync(q => q.Id == id);
 
-        if (question == null)
-        {
-            return NotFound();
-        }
+    if (question == null) return NotFound();
 
-        // ২. প্রশ্নটি ডিলিট করা (Entity Framework অটোমেটিক এর অপশনগুলোও ডিলিট করবে যদি Cascade সেট থাকে)
-        _context.Questions.Remove(question);
-        
-        try
-        {
-            await _context.SaveChangesAsync();
-            return Ok(new { message = "Question deleted successfully!" });
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, ex.Message);
-        }
-    }
+    // ১. এই প্রশ্নের সাথে জড়িত কোর্স এবং টিচারের নাম জেনে নেওয়া
+    string courseName = question.CourseName;
+    string teacherEmail = question.TeacherEmail;
+
+    // ২. ওই কোর্সের সকল স্টুডেন্ট উত্তর (StudentAnswers) মুছে ফেলা
+    var relatedAnswers = _context.StudentAnswers.Where(sa => sa.QuestionId == id);
+    _context.StudentAnswers.RemoveRange(relatedAnswers);
+
+    // ৩. ঐচ্ছিক কিন্তু জরুরি: যেহেতু পরীক্ষাটি পরিবর্তিত হচ্ছে, ওই কোর্সের পুরনো সামারি রেজাল্ট মুছে ফেলা
+    // যাতে এডমিন ড্যাশবোর্ডে পুরনো এভারেজ না দেখায়
+    var relatedResults = _context.ExamResults.Where(r => r.CourseName == courseName && r.TeacherEmail == teacherEmail);
+    _context.ExamResults.RemoveRange(relatedResults);
+
+    // ৪. মূল প্রশ্ন ডিলিট করা
+    _context.Questions.Remove(question);
+
+    await _context.SaveChangesAsync();
+    
+    return Ok(new { message = "Question and all historical results for this course cleared." });
+}
 
 }

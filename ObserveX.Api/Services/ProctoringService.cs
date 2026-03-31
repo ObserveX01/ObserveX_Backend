@@ -14,23 +14,33 @@ public class ProctoringService
     public ProctoringService()
     {
         try
+    {
+        // সার্ভারে ফাইল খুঁজে পাওয়ার সবথেকে নিরাপদ উপায়
+        string baseDir = AppContext.BaseDirectory;
+        string modelPath = Path.Combine(baseDir, "Models", "yolov8n.onnx");
+
+        if (!File.Exists(modelPath))
         {
-            string projectRoot = Directory.GetCurrentDirectory();
-            string modelPath = Path.Combine(projectRoot, "Models", "yolov8s.onnx");
-
-            if (!File.Exists(modelPath))
-                modelPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Models", "yolov8s.onnx");
-
-            var options = new Microsoft.ML.OnnxRuntime.SessionOptions();
-            options.GraphOptimizationLevel = GraphOptimizationLevel.ORT_ENABLE_ALL;
-
-            if (File.Exists(modelPath))
-            {
-                _session = new InferenceSession(modelPath, options);
-                Console.WriteLine("✅ ObserveX AI Guard: Active & Responsive.");
-            }
+            // অল্টারনেট পাথ চেক (MonsterASP এর জন্য)
+            modelPath = Path.Combine(Directory.GetCurrentDirectory(), "Models", "yolov8n.onnx");
         }
-        catch (Exception ex) { Console.WriteLine($"❌ AI Error: {ex.Message}"); }
+
+        var options = new Microsoft.ML.OnnxRuntime.SessionOptions();
+        options.GraphOptimizationLevel = GraphOptimizationLevel.ORT_ENABLE_ALL;
+        // র‍্যাম কম থাকলে থ্রেড সংখ্যা সীমিত রাখা ভালো
+        options.IntraOpNumThreads = 1; 
+
+        if (File.Exists(modelPath))
+        {
+            _session = new InferenceSession(modelPath, options);
+            Console.WriteLine("✅ ObserveX AI Guard: Nano Model Loaded Successfully.");
+        }
+        else
+        {
+            throw new FileNotFoundException($"Model file not found at {modelPath}");
+        }
+    }
+    catch (Exception ex) { Console.WriteLine($"❌ AI Critical Error: {ex.Message}"); }
     }
 
     public (bool isViolation, string message) AnalyzeFrame(Stream imageStream)

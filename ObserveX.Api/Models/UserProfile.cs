@@ -1,4 +1,8 @@
+using System.ComponentModel.DataAnnotations.Schema;
 namespace ObserveX.Api.Models;
+
+
+[Table("userprofiles")]
 
 public class UserProfile
 {

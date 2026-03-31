@@ -1,4 +1,6 @@
+using System.ComponentModel.DataAnnotations.Schema;
 namespace ObserveX.Api.Models;
+[Table("examresults")]
 public class ExamResult {
     public int Id { get; set; }
     public string StudentEmail { get; set; }= string.Empty;
