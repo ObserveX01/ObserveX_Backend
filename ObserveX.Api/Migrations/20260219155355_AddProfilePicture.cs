@@ -8,14 +8,34 @@ namespace ObserveX.Api.Migrations
     public partial class AddProfilePicture : Migration
     {
         /// <inheritdoc />
+        /// 
+        ///  b.Property<string>("Email")
+                   
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+
+                         .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+                });
+#pragma warning restore 612, 618
+        }
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "ProfilePicture",
-                table: "UserProfiles",
-                type: "longtext",
-                nullable: true)
-                .Annotation("MySql:CharSet", "utf8mb4");
+           
         }
 
         /// <inheritdoc />
