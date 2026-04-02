@@ -7,15 +7,6 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ObserveX.Api.Data;
 
- {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ExamResultId = table.Column<int>(type: "int", nullable: false),
-                    QuestionId = table.Column<int>(type: "int", nullable: false),
-                    SelectedOptionId = table.Column<int>(type: "int", nullable: false),
-                    IsCorrect = table.Column<bool>(type: "tinyint(1)", nullable: false)
-                },
-                constraints: table =>
 #nullable disable
 
 namespace ObserveX.Api.Migrations
@@ -29,7 +20,12 @@ namespace ObserveX.Api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotat
+                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
+
+            modelBuilder.Entity("ObserveX.Api.Models.ExamResult", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,17 +37,18 @@ namespace ObserveX.Api.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                        Property<string>("TeacherEmail")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<DateTime>("ExamDate")
+                        .HasColumnType("datetime(6)");
 
-                    b.Property<string>("TeacherName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<double>("Percentage")
+                        .HasColumnType("double");
 
-                    b.Property<int>("TotalQuestions")
+                    b.Property<int>("Score")
                         .HasColumnType("int");
 
+                    b.Property<string>("StudentEmail")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("TeacherEmail")
                         .IsRequired()
@@ -66,35 +63,42 @@ namespace ObserveX.Api.Migrations
 
                     b.HasKey("Id");
 
-               
-                    b.Property<int>("Points")
+                    b.ToTable("ExamResults");
+                });
 
-                    Property<string>("TeacherEmail")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("TeacherName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("TotalQuestions")
+            modelBuilder.Entity("ObserveX.Api.Models.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CourseName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Points")
                         .HasColumnType("int");
 
                     b.Property<string>("TeacherEmail")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                Property<string>("TeacherEmail")
+                    b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("TeacherName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("TotalQuestions")
+                    b.Property<int>("TimeLimit")
                         .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Questions");
                 });
 
             modelBuilder.Entity("ObserveX.Api.Models.QuestionOption", b =>
