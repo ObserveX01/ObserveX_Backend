@@ -106,13 +106,8 @@ public async Task<IActionResult> GetLatestResult(string studentEmail, string cou
             result.TotalQuestions,
             result.Percentage,
             Details = details
-        });
-    }
 
-    [HttpGet("all")]
-    public async Task<IActionResult> GetAllResults()
-    {
-        // Left Join: প্রোফাইল না থাকলেও রেজাল্ট আসবে
+            // Left Join: প্রোফাইল না থাকলেও রেজাল্ট আসবে
         var results = await (from r in _context.ExamResults
                             join p in _context.UserProfiles on r.StudentEmail equals p.Email into profileGroup
                             from p in profileGroup.DefaultIfEmpty()
@@ -133,6 +128,17 @@ public async Task<IActionResult> GetLatestResult(string studentEmail, string cou
                             .ToListAsync();
 
         return Ok(results);
+        });
+    }
+
+    [HttpGet("all")]
+    public async Task<IActionResult> GetAllResults()
+    {
+        var results = await _context.ExamResults
+        .Where(r => r.TeacherEmail == teacherEmail)
+        .OrderByDescending(r => r.ExamDate)
+        .ToListAsync();
+    return Ok(results);
     }
 
     [HttpGet("teacher/{teacherEmail}")]
@@ -145,3 +151,25 @@ public async Task<IActionResult> GetResultsByTeacher(string teacherEmail)
     return Ok(results);
 }
 }
+
+// Left Join: প্রোফাইল না থাকলেও রেজাল্ট আসবে
+        var results = await (from r in _context.ExamResults
+                            join p in _context.UserProfiles on r.StudentEmail equals p.Email into profileGroup
+                            from p in profileGroup.DefaultIfEmpty()
+                            select new {
+                                r.Id,
+                                r.StudentEmail,
+                                // যদি p নাল হয় (প্রোফাইল নেই), তবে "NULL" স্ট্রিং বসবে
+                                StudentName = p != null ? (p.FirstName + " " + p.LastName).Trim() : "NULL",
+                                r.TeacherEmail,
+                                r.TeacherName,
+                                r.CourseName,
+                                r.Score,
+                                r.TotalQuestions,
+                                r.Percentage,
+                                r.ExamDate
+                            })
+                            .OrderByDescending(x => x.ExamDate)
+                            .ToListAsync();
+
+        return Ok(results);
