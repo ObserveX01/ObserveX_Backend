@@ -2,20 +2,33 @@
 
 #nullable disable
 
+
+Property<string>("TeacherEmail")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TeacherName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("TotalQuestions")
+                        .HasColumnType("int");
 namespace ObserveX.Api.Migrations
 {
     /// <inheritdoc />
     public partial class AddTeacherNameToResult : Migration
-    {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.AddColumn<string>(
+    {]g>(
                 name: "TeacherName",
                 table: "ExamResults",
                 type: "longtext",
                 nullable: false)
-                .Annotation("MySql:CharSet", "utf8mb4");
+               
+                    b.Property<string>("TeacherName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("TotalQuestions")
+                        .HasColumnType("int");
         }
 
         /// <inheritdoc />
@@ -24,6 +37,17 @@ namespace ObserveX.Api.Migrations
             migrationBuilder.DropColumn(
                 name: "TeacherName",
                 table: "ExamResults");
+
+                Property<string>("TeacherEmail")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TeacherName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("TotalQuestions")
+                        .HasColumnType("int");
         }
     }
 }

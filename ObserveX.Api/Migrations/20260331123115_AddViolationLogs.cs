@@ -2,10 +2,28 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-#nullable disable
 
-namespace ObserveX.Api.Migrations
-{
+ng Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using ObserveX.Api.Data;
+
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using ObserveX.Api.Data;
+
+ng Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using ObserveX.Api.Data;
+
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using ObserveX.Api.Data;
+
+
     /// <inheritdoc />
     public partial class AddViolationLogs : Migration
     {
@@ -16,6 +34,12 @@ namespace ObserveX.Api.Migrations
                 name: "FK_QuestionOptions_Questions_QuestionId",
                 table: "QuestionOptions");
 
+#nullable disable
+
+namespace ObserveX.Api.Migrations
+{
+    /// <inheritdoc />
+    public
             migrationBuilder.DropForeignKey(
                 name: "FK_StudentAnswers_ExamResults_ExamResultId",
                 table: "StudentAnswers");
@@ -30,18 +54,7 @@ namespace ObserveX.Api.Migrations
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_StudentAnswers",
-                table: "StudentAnswers");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Questions",
-                table: "Questions");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_QuestionOptions",
-                table: "QuestionOptions");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_ExamResults",
+                tabl]
                 table: "ExamResults");
 
             migrationBuilder.RenameTable(
@@ -53,20 +66,21 @@ namespace ObserveX.Api.Migrations
                 newName: "userprofiles");
 
             migrationBuilder.RenameTable(
-                name: "StudentAnswers",
-                newName: "studentanswers");
+                  name: "FK_questionoptions_questions_QuestionId",
+                table: "questionoptions",
+                column: "QuestionId",
+                principalTable: "questions",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
 
-            migrationBuilder.RenameTable(
-                name: "Questions",
-                newName: "questions");
-
-            migrationBuilder.RenameTable(
-                name: "QuestionOptions",
-                newName: "questionoptions");
-
-            migrationBuilder.RenameTable(
-                name: "ExamResults",
-                newName: "examresults");
+            migrationBuilder.AddForeignKey(
+                name: "FK_studentanswers_examresults_ExamResultId",
+                table: "studentanswers",
+                column: "ExamResultId",
+                principalTable: "examresults",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
+                n]]
 
             migrationBuilder.RenameIndex(
                 name: "IX_StudentAnswers_ExamResultId",
@@ -76,27 +90,7 @@ namespace ObserveX.Api.Migrations
             migrationBuilder.RenameIndex(
                 name: "IX_QuestionOptions_QuestionId",
                 table: "questionoptions",
-                newName: "IX_questionoptions_QuestionId");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_users",
-                table: "users",
-                column: "Id");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_userprofiles",
-                table: "userprofiles",
-                column: "Id");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_studentanswers",
-                table: "studentanswers",
-                column: "Id");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_questions",
-                table: "questions",
-                column: "Id");
+                n
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_questionoptions",
@@ -113,16 +107,7 @@ namespace ObserveX.Api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    StudentEmail = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    TeacherEmail = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CourseName = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Message = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Timestamp = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                      
                 },
                 constraints: table =>
                 {

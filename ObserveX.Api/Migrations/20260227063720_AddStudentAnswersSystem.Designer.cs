@@ -11,8 +11,23 @@ using ObserveX.Api.Data;
 
 namespace ObserveX.Api.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
-    [Migration("20260227063720_AddStudentAnswersSystem")]
+
+      partial class AddStudentAnswersSystem
+    {
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+
+     modelBuilder
+                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
+
+            modelBuilder.Entity("ObserveX.Api.Models.ExamResult", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
     partial class AddStudentAnswersSystem
     {
         /// <inheritdoc />
@@ -26,6 +41,22 @@ namespace ObserveX.Api.Migrations
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
             modelBuilder.Entity("ObserveX.Api.Models.ExamResult", b =>
+
+             b.Property<string>("CourseName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("ExamDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<double>("Percentage")
+                        .HasColumnType("double");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StudentEmail")
+                        .IsRequired()
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
