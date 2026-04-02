@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using ObserveX.Api.Data;
 
 #nullable disable
 
@@ -16,8 +16,13 @@ namespace ObserveX.Api.Migrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        {
+#pragma warning disable 612, 618
+            modelBuilder
+                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-        ySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
+            MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
             modelBuilder.Entity("ObserveX.Api.Models.User", b =>
                 {
@@ -32,13 +37,6 @@ namespace ObserveX.Api.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("PasswordHash")
-        {
-#pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            M
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -63,30 +61,31 @@ namespace ObserveX.Api.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b  b.Property<string>("Email")
-                   
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-
-                         .IsRequired()
+                    b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("PasswordHash")
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-                });
-#pragma warning restore 612, 618
-        }
                         .IsRequired()
                         .HasColumnType("longtext");
 
