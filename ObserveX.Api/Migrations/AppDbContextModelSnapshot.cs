@@ -2,7 +2,9 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-usi
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using ObserveX.Api.Data;
 
 #nullable disable
 
@@ -12,9 +14,6 @@ namespace ObserveX.Api.Migrations
     partial class AppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
-
-        HasAnnotation("ProductVersion", "8.0.8")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +26,16 @@ namespace ObserveX.Api.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                   
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CourseName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("ExamDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<double>("Percentage")
                         .HasColumnType("double");
@@ -40,26 +48,6 @@ namespace ObserveX.Api.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("TeacherEmail")
-                      b.Property<string>("CourseName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("ExamDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<double>("Percentage")
-                        .HasColumnType("double");
-
-                    b.Property<int>("Score")
-                        .HasColumnType("int");
-                    b.Property<int>("TotalQuestions")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("examresults", (string)null);
-                });
-                b.Property<string>("TeacherEmail")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -68,7 +56,12 @@ namespace ObserveX.Api.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<int>("TotalQuestions")
-                        .HasColumnType("int")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("examresults", (string)null);
+                });
 
             modelBuilder.Entity("ObserveX.Api.Models.Question", b =>
                 {
@@ -81,22 +74,24 @@ namespace ObserveX.Api.Migrations
                     b.Property<string>("CourseName")
                         .IsRequired()
                         .HasColumnType("longtext");
-                        b.Property<string>("TeacherEmail")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("TeacherName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("TotalQuestions")
-                        .HasColumnType("int")
 
                     b.Property<int>("Points")
                         .HasColumnType("int");
 
                     b.Property<string>("TeacherEmail")
-                    
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("TimeLimit")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -165,7 +160,28 @@ namespace ObserveX.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("users", (string)null);
+                });
 
             modelBuilder.Entity("ObserveX.Api.Models.UserProfile", b =>
                 {
@@ -190,17 +206,6 @@ namespace ObserveX.Api.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                        b.Property<string>("TeacherEmail")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("TeacherName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("TotalQuestions")
-                        .HasColumnType("int")
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -251,7 +256,28 @@ namespace ObserveX.Api.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("Timestamp")
-             )
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("violationlogs", (string)null);
+                });
+
+            modelBuilder.Entity("ObserveX.Api.Models.QuestionOption", b =>
+                {
+                    b.HasOne("ObserveX.Api.Models.Question", null)
+                        .WithMany("Options")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ObserveX.Api.Models.StudentAnswer", b =>
+                {
+                    b.HasOne("ObserveX.Api.Models.ExamResult", null)
+                        .WithMany("Answers")
+                        .HasForeignKey("ExamResultId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -264,17 +290,6 @@ namespace ObserveX.Api.Migrations
                 {
                     b.Navigation("Options");
                 });
-
-                b.Property<string>("TeacherEmail")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("TeacherName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("TotalQuestions")
-                        .HasColumnType("int")
 #pragma warning restore 612, 618
         }
     }
