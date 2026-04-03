@@ -101,7 +101,7 @@ const EditorPage = () => {
     }));
 
     try {
-      const res = await fetch("http://localhost:5142/api/questions/bulk", {
+      const res = await fetch("http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/questions/bulk", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

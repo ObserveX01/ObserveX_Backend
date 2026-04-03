@@ -10,7 +10,7 @@ const CourseQuestionsPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:5142/api/questions/${teacherEmail}`)
+    fetch(`http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/questions/${teacherEmail}`)
       .then((res) => res.json())
       .then((data) => {
         const grouped = data.reduce((acc, obj) => {

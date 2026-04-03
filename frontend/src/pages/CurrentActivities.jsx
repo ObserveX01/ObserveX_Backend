@@ -11,7 +11,7 @@ const CurrentActivities = () => {
   useEffect(() => {
     const studentEmail = sessionStorage.getItem("userEmail");
     // আপনার এপিআই থেকে ডাটা ফেচ করুন (ORDER BY ExamDate DESC)
-    fetch(`http://localhost:5142/api/results/student/${studentEmail}`)
+    fetch(`http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/results/student/${studentEmail}`)
       .then((res) => res.json())
       .then((data) => {
         setActivities(data);

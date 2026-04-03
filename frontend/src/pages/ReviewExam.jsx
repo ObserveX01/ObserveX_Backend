@@ -10,7 +10,7 @@ const ReviewExam = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5142/api/results/details/${resultId}`)
+    fetch(`http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/results/details/${resultId}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Review Data Received:", data);
