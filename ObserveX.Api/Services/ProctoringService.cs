@@ -16,7 +16,7 @@ public class ProctoringService
         try
     {
         // সার্ভারে ফাইল খুঁজে পাওয়ার সবথেকে নিরাপদ উপায়
-        string baseDir = AppContext.BaseDirectory;
+        string baseDir = Directory.GetCurrentDirectory();
         string modelPath = Path.Combine(baseDir, "Models", "yolov8n.onnx");
 
         if (!File.Exists(modelPath))

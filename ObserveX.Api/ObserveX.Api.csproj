@@ -31,4 +31,10 @@
     
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Models\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
