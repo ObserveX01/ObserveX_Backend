@@ -69,7 +69,7 @@ const LoginPage = () => {
 
     try {
       const response = await fetch(
-        "http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/auth/login",
+        "https://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/auth/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
