@@ -12,7 +12,7 @@ const StudentResults = () => {
   useEffect(() => {
     const teacherEmail = sessionStorage.getItem("userEmail");
 
-    fetch(`http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/results/teacher/${teacherEmail}`)
+    fetch(`/api/results/teacher/${teacherEmail}`)
       .then((res) => res.json())
       .then((data) => {
         setResults(data);

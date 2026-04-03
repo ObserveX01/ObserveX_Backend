@@ -12,7 +12,7 @@ const ResultsDatabase = () => {
 
   useEffect(() => {
     // --- ১. ডাটা ফেচ এবং গার্বেজ ফিল্টারিং লজিক (আপডেটেড) ---
-    fetch("http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/results/all")
+    fetch("/api/results/all")
       .then((res) => res.json())
       .then((results) => {
         // যদি ব্যাকএন্ড থেকে ডাটা না আসে

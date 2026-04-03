@@ -12,7 +12,7 @@ const MyQuestionsPage = () => {
   const teacherEmail = sessionStorage.getItem("userEmail");
 
   const fetchQuestions = () => {
-    fetch(`http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/questions/${teacherEmail}`)
+    fetch(`/api/questions/${teacherEmail}`)
       .then((res) => res.json())
       .then((data) => setQuestions(data));
   };
@@ -30,14 +30,11 @@ const MyQuestionsPage = () => {
   // এডিট সেভ করা
   const handleSaveEdit = async () => {
     try {
-      const res = await fetch(
-        `http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/questions/${editId}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(editData),
-        },
-      );
+      const res = await fetch(`/api/questions/${editId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(editData),
+      });
 
       if (res.ok) {
         setEditId(null);
@@ -56,12 +53,9 @@ const MyQuestionsPage = () => {
       )
     ) {
       try {
-        const res = await fetch(
-          `http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/questions/${id}`,
-          {
-            method: "DELETE",
-          },
-        );
+        const res = await fetch(`/api/questions/${id}`, {
+          method: "DELETE",
+        });
 
         if (res.ok) {
           // UI থেকে সাথে সাথে রিমুভ করা

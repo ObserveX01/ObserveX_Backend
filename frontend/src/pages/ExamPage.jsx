@@ -55,15 +55,11 @@ const ExamPage = () => {
       const studentEmail = sessionStorage.getItem("userEmail");
       const decodedCourse = decodeURIComponent(courseName);
       try {
-        const qRes = await fetch(
-          "http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/questions/all",
-        );
+        const qRes = await fetch("/api/questions/all");
         const qData = await qRes.json();
         setQuestions(qData.filter((q) => q.courseName === decodedCourse));
 
-        const rRes = await fetch(
-          `http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/results/latest/${studentEmail}/${decodedCourse}`,
-        );
+        const rRes = await fetch(`/api/results/latest/${studentEmail}/${decodedCourse}`);
         if (rRes.ok) {
           const rData = await rRes.json();
           // যদি ডাটা null না হয় তবেই সেট হবে
@@ -98,14 +94,11 @@ const ExamPage = () => {
         Answers: answersList,
       };
       try {
-        const response = await fetch(
-          "http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/results/save",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(resultData),
-          },
-        );
+        const response = await fetch("/api/results/save", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(resultData),
+        });
 
         if (response.ok) {
           console.log("✅ Data successfully synced with ExamResults & StudentAnswers");
@@ -173,13 +166,10 @@ const ExamPage = () => {
       formData.append("file", blob, "proctor_frame.jpg");
 
       try {
-        const response = await fetch(
-          "http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/proctor/analyze",
-          {
-            method: "POST",
-            body: formData,
-          },
-        );
+        const response = await fetch("/api/proctor/analyze", {
+          method: "POST",
+          body: formData,
+        });
         const data = await response.json();
         if (data.violation) {
           setAiWarning(data.message.toUpperCase());

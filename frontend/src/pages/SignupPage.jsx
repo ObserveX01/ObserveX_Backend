@@ -53,14 +53,11 @@ const SignupPage = () => {
     };
 
     try {
-      const response = await fetch(
-        "http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/auth/signup",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(signupData),
-        },
-      );
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(signupData),
+      });
 
       const result = await response.json();
 

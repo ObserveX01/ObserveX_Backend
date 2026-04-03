@@ -14,7 +14,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     // --- ১. ডাটা ফেচ করার লজিক (আপনার অরিজিনাল কোড) ---
-    fetch("http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/questions/all")
+    fetch("/api/questions/all")
       .then((res) => res.json())
       .then((data) => {
         const grouped = data.reduce((acc, obj) => {
