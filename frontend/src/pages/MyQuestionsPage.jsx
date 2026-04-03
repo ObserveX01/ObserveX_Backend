@@ -12,7 +12,7 @@ const MyQuestionsPage = () => {
   const teacherEmail = sessionStorage.getItem("userEmail");
 
   const fetchQuestions = () => {
-    fetch(`http://localhost:5142/api/questions/${teacherEmail}`)
+    fetch(`http://observexx-dvc7f4hhhmfxbedx.centralindia-01.azurewebsites.net/api/questions/${teacherEmail}`)
       .then((res) => res.json())
       .then((data) => setQuestions(data));
   };
@@ -30,11 +30,14 @@ const MyQuestionsPage = () => {
   // এডিট সেভ করা
   const handleSaveEdit = async () => {
     try {
-      const res = await fetch(`http://localhost:5142/api/questions/${editId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(editData),
-      });
+      const res = await fetch(
+        `http://observexx-dvc7f4hhhmfxbedx.centralindia-01.azurewebsites.net/api/questions/${editId}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(editData),
+        },
+      );
 
       if (res.ok) {
         setEditId(null);
@@ -53,9 +56,12 @@ const MyQuestionsPage = () => {
       )
     ) {
       try {
-        const res = await fetch(`http://localhost:5142/api/questions/${id}`, {
-          method: "DELETE",
-        });
+        const res = await fetch(
+          `http://observexx-dvc7f4hhhmfxbedx.centralindia-01.azurewebsites.net/api/questions/${id}`,
+          {
+            method: "DELETE",
+          },
+        );
 
         if (res.ok) {
           // UI থেকে সাথে সাথে রিমুভ করা
