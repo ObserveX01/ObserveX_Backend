@@ -29,7 +29,9 @@ const AccountPage = () => {
         return;
       }
       try {
-        const res = await fetch(`http://localhost:5142/api/profile/${userEmail}`);
+        const res = await fetch(
+          `http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/profile/${userEmail}`,
+        );
         if (res.ok) {
           const data = await res.json();
           setFormData({
@@ -55,11 +57,14 @@ const AccountPage = () => {
 
   const handleUpdate = async () => {
     try {
-      const res = await fetch("http://localhost:5142/api/profile/update", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        "http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/profile/update",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        },
+      );
       if (res.ok) alert("Profile Updated Successfully!");
       else alert("Failed to update profile.");
     } catch (err) {
@@ -74,10 +79,13 @@ const AccountPage = () => {
     uploadData.append("file", file);
     uploadData.append("email", userEmail);
     try {
-      const res = await fetch("http://localhost:5142/api/profile/upload-image", {
-        method: "POST",
-        body: uploadData,
-      });
+      const res = await fetch(
+        "http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/profile/upload-image",
+        {
+          method: "POST",
+          body: uploadData,
+        },
+      );
       if (res.ok) {
         const data = await res.json();
         setFormData((prev) => ({ ...prev, profilePicture: data.fileName }));
@@ -115,7 +123,7 @@ const AccountPage = () => {
                 initial={{ scale: 0.8 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.8 }}
-                src={`http://localhost:5142/uploads/${formData.profilePicture}`}
+                src={`http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/uploads/${formData.profilePicture}`}
                 alt='Full View'
                 className='max-w-full max-h-[90vh] rounded-2xl shadow-2xl border-4 border-white/10'
                 onClick={(e) => e.stopPropagation()} // ছবি ক্লিক করলে যেন বন্ধ না হয়
@@ -134,7 +142,7 @@ const AccountPage = () => {
               >
                 {formData.profilePicture ? (
                   <img
-                    src={`http://localhost:5142/uploads/${formData.profilePicture}`}
+                    src={`http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/uploads/${formData.profilePicture}`}
                     alt='Profile'
                     className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-500'
                     key={formData.profilePicture}

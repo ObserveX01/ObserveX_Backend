@@ -54,7 +54,7 @@ const SignupPage = () => {
 
     try {
       const response = await fetch(
-        "http://observexx-dvc7f4hhhmfxbedx.centralindia-01.azurewebsites.net/api/auth/signup",
+        "http://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/auth/signup",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
