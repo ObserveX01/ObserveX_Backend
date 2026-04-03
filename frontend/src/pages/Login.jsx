@@ -68,14 +68,11 @@ const LoginPage = () => {
     setIsLoggingIn(true); // Start button loading
 
     try {
-      const response = await fetch(
-        "https://observexall-gwhfc3eabffxhhgj.centralindia-01.azurewebsites.net/api/auth/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password, role }),
-        },
-      );
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password, role }),
+      });
       const result = await response.json();
 
       if (response.ok) {
