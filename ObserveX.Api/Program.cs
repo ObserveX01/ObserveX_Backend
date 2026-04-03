@@ -41,7 +41,7 @@ builder.Services.AddSingleton<ProctoringService>();
 // --- 4. CORS ---
 builder.Services.AddCors(options => {
     options.AddPolicy("AllowReact", policy => {
-        policy.WithOrigins("http://localhost:5173")
+        policy.AllowAnyOrigin() // আপাতত সব অরিজিন এলাউ করুন অথবা আপনার Azure URL দিন
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -53,10 +53,13 @@ var app = builder.Build();
 
 // --- 5. Middleware Pipeline ---
 app.UseCors("AllowReact");
+app.UseDefaultFiles();
 app.UseStaticFiles();
 
+app.UseRouting();
 app.UseAuthentication(); 
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapFallbackToFile("index.html");
 app.Run();
